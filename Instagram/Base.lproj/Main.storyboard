@@ -226,7 +226,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Share"/>
                                 <connections>
-                                    <action selector="didTapCancel:" destination="oaC-U9-FQf" eventType="touchUpInside" id="iU1-w6-hcH"/>
+                                    <action selector="didTapShare:" destination="oaC-U9-FQf" eventType="touchUpInside" id="gSh-Z3-ax2"/>
                                 </connections>
                             </button>
                         </barButtonItem>
