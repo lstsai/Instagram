@@ -88,7 +88,7 @@
         <!--Timeline View Controller-->
         <scene sceneID="WIh-ai-H1J">
             <objects>
-                <viewController id="zaF-2d-Xh0" customClass="TimelineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimelineViewController" id="zaF-2d-Xh0" customClass="TimelineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYu-lB-K9P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
         <!--Navigation Controller-->
         <scene sceneID="rfD-sz-3Ne">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3dO-41-8Tl" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="3dO-41-8Tl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3MP-0X-d7N"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pKD-8I-cbM">
