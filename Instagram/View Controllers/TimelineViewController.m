@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
-@interface TimelineViewController ()
+@interface TimelineViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -19,11 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"here in Logging out");
+    
 
 }
+//implement delegate method
+
 - (IBAction)didTapLogout:(id)sender {
-    NSLog(@"here in Logging out");
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error)
             NSLog(@"Error Logging out: %@", error.description);
@@ -46,5 +47,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
 
 @end
