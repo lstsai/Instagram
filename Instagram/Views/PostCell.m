@@ -15,9 +15,7 @@
     // Initialization code
 }
 -(void) loadData{
-    self.postCaption.text=self.post.caption;
-    self.postImage.image=nil;
-    
+    self.postCaption.text=self.post.caption;    
     self.postImage.file = self.post[@"image"];//load the image useing the PFFile
     [self.postImage loadInBackground];
 }

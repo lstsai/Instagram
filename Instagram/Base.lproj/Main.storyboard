@@ -192,7 +192,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="insta_camera_btn"/>
                                 <connections>
-                                    <segue destination="yR7-tb-QiJ" kind="presentation" id="HbC-bm-coq"/>
+                                    <segue destination="yR7-tb-QiJ" kind="presentation" identifier="ComposeSegue" id="HbC-bm-coq"/>
                                 </connections>
                             </button>
                         </barButtonItem>

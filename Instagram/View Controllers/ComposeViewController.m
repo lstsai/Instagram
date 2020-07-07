@@ -23,11 +23,14 @@
 }
 - (IBAction)didTapShare:(id)sender {
     [Post postUserImage:self.postImage.image withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded)
+        if(succeeded){
             NSLog(@"Success posting!");
+            [self.delegate didPost];
+        }
         else
             NSLog(@"Error posting: %@", error.description);
         [self dismissViewControllerAnimated:YES completion:nil];
+        
     }];
 
 }

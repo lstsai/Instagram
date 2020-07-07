@@ -8,12 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Post.h"
+#import "TimelineViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol ComposeViewControllerDelegate
 
+- (void)didPost;
+
+@end
 @interface ComposeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UITextView *captionTextView;
+@property (weak, nonatomic) id<ComposeViewControllerDelegate> delegate;
 
 @end
 
