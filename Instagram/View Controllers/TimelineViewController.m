@@ -45,7 +45,9 @@
 -(void) refreshTimeline{
     //query for the post table
     PFQuery *postQuery= [PFQuery queryWithClassName:@"Post"];
-    postQuery.limit=20;//limit 20 posts
+    int postLimit=20;
+    
+    postQuery.limit=postLimit;//limit 20 posts
     
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
         if(error)
@@ -62,12 +64,7 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *currCell= [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
-    Post *post= self.posts[indexPath.row];
-    currCell.postCaption.text=post.caption;
-    currCell.postImage.image=nil;
-    
-    currCell.postImage.file = post[@"image"];//load the image useing the PFFile
-    [currCell.postImage loadInBackground];
+    [currCell loadData];
     return currCell;
 }
 

@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.alert= [UIAlertController alertControllerWithTitle:@"Error" message:@"Message" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //nothing
+    }];
+    [self.alert addAction:okAction];
 }
 - (IBAction)didTapSignUp:(id)sender {
     [self.activityIndicator startAnimating];
@@ -24,53 +29,44 @@
     
     newUser.username = self.usernameField.text;
     newUser.password = self.passwordField.text;
+    [self.alert setTitle:@"Error Signing up"];
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Signing Up"
-           message:@"Usernamne or password cannot be empty."
-    preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //nothing
-    }];
-    [alert addAction:okAction];
-    if( [newUser.username isEqualToString:@""] || [newUser.password isEqualToString:@""]  )
-        [self presentViewController:alert animated:YES completion:^{
-            //nobthing
+    if([newUser.username isEqualToString:@""] || [newUser.password isEqualToString:@""])
+    {
+        [self.alert setMessage:@"Username and/or password cannot be empty"];
+        [self presentViewController:self.alert animated:YES completion:^{
+            //nothing
         }];
-    
-    // call sign up function on the object
-    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error.localizedDescription);
-            [alert setMessage:[NSString stringWithFormat: @"%@", error.localizedDescription]];
-            [self presentViewController:alert animated:YES completion:^{
-                //nobthing
-            }];
-        } else {
-            NSLog(@"User registered successfully");
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];//go to timeline after login
-        }
-        [self.activityIndicator stopAnimating];
-
-    }];
+    }
+    else{//only signup if there was no error
+        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error.localizedDescription);
+                [self.alert setMessage:[NSString stringWithFormat: @"%@", error.localizedDescription]];
+                [self presentViewController:self.alert animated:YES completion:^{
+                    //nobthing
+                }];
+            } else {
+                NSLog(@"User registered successfully");
+                [self performSegueWithIdentifier:@"loginSegue" sender:nil];//go to timeline after login
+            }
+            [self.activityIndicator stopAnimating];
+        }];
+    }
 }
 - (IBAction)didTapLogin:(id)sender {
     [self.activityIndicator startAnimating];
     
     NSString *username= self.usernameField.text;
     NSString *password= self.passwordField.text;
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error Logging In"
-           message:@"Incorrect usernamne or password "
-    preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //nothing
-    }];
-    [alert addAction:okAction];
+    
+    [self.alert setTitle:@"Error Logging In"];
     
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil)
         {
-            [alert setMessage:[NSString stringWithFormat: @"%@", error.description]];
-            [self presentViewController:alert animated:YES completion:^{
+            [self.alert setMessage:[NSString stringWithFormat: @"%@", error.description]];
+            [self presentViewController:self.alert animated:YES completion:^{
                 //nobthing
             }];
             NSLog(@"User log in failed: %@", error.localizedDescription);
