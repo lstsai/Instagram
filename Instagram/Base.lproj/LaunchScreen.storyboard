@@ -24,16 +24,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uyc-to-B6e">
-                                <rect key="frame" x="166" y="329" width="83" height="82"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="9yq-QA-lnO">
+                                <rect key="frame" x="160" y="312" width="94" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="Emw-1S-Lv5"/>
+                                    <constraint firstAttribute="width" constant="94" id="OP7-ea-LIj"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="oq8-rA-Lkg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="97B-E2-Zwo"/>
                             <constraint firstItem="oq8-rA-Lkg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zwc-Vw-tfI"/>
-                            <constraint firstItem="uyc-to-B6e" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fDf-xj-s3s"/>
-                            <constraint firstItem="oq8-rA-Lkg" firstAttribute="top" secondItem="uyc-to-B6e" secondAttribute="bottom" constant="8" id="xpX-Ct-8vD"/>
+                            <constraint firstItem="9yq-QA-lnO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aMB-eG-kzh"/>
+                            <constraint firstItem="oq8-rA-Lkg" firstAttribute="top" secondItem="9yq-QA-lnO" secondAttribute="bottom" constant="15.5" id="th0-ir-DwX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
