@@ -10,7 +10,8 @@
 #import <Parse/Parse.h>
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
-@interface TimelineViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#import "Post.h"
+@interface TimelineViewController ()<UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -18,8 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    // Do any additional setup after loading the view.
+    self.tableView.dataSource=self;
+    self.tableView.delegate=self;
+    [self refreshTimeline];
 
 }
 //implement delegate method
@@ -38,6 +42,38 @@
     sceneDelegate.window.rootViewController = loginViewController;
 }
 
+-(void) refreshTimeline{
+    //query for the post table
+    PFQuery *postQuery= [PFQuery queryWithClassName:@"Post"];
+    postQuery.limit=20;//limit 20 posts
+    
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+        if(error)
+        {
+            NSLog(@"Error loading posts: %@", error.description);
+        }
+        else
+        {
+            self.posts=objects;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PostCell *currCell= [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    Post *post= self.posts[indexPath.row];
+    currCell.postCaption.text=post.caption;
+    currCell.postImage.image=nil;
+    
+    currCell.postImage.file = post[@"image"];//load the image useing the PFFile
+    [currCell.postImage loadInBackground];
+    return currCell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
 /*
 #pragma mark - Navigation
 
@@ -47,13 +83,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return nil;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
-}
-
 @end
