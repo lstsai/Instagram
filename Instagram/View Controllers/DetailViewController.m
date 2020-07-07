@@ -27,6 +27,11 @@
     self.timeLabel.text=[self.post.createdAt shortTimeAgoSinceNow];
     self.postImage.file = self.post.image;//load the image useing the PFFile
     [self.postImage loadInBackground];
+    
+    self.profilePic.layer.masksToBounds=YES;
+    self.profilePic.layer.cornerRadius=self.profilePic.bounds.size.width/2;
+    self.profilePic.layer.borderWidth=1;
+    self.profilePic.layer.borderColor = [[UIColor lightGrayColor] CGColor];
 }
 /*
 #pragma mark - Navigation

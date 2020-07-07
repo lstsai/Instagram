@@ -8,7 +8,7 @@
 
 #import "ComposeViewController.h"
 
-@interface ComposeViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ComposeViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 
 @end
 
@@ -17,6 +17,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.captionTextView.delegate=self;
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    //clear text when the starting to type
+    if([self.captionTextView.text isEqualToString:@"Write a caption..."])
+    {
+        self.captionTextView.text=@"";
+    }
 }
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
