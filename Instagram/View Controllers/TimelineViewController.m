@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "Post.h"
 #import "ComposeViewController.h"
+#import "DetailViewController.h"
 @interface TimelineViewController ()<ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
@@ -56,8 +57,9 @@
     
     postQuery.limit=postLimit;//limit 20 posts
     [postQuery orderByDescending:@"createdAt"];
-    
-    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post *> * _Nullable objects, NSError * _Nullable error) {
+    [postQuery includeKey:@"author"];
+
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray<PFObject *> * _Nullable objects, NSError * _Nullable error) {
         if(error)
         {
             NSLog(@"Error loading posts: %@", error.description);
@@ -65,6 +67,7 @@
         else
         {
             NSLog(@"Success getting post");
+            //[Post postsWithArray:objects];
             self.posts=objects;
             [self.tableView reloadData];
         }
@@ -76,6 +79,7 @@
     PostCell *currCell= [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     currCell.post=self.posts[indexPath.row];
     [currCell loadData];//load cell data
+    NSLog(@"object id %@", currCell.post.objectId);
     return currCell;
 }
 
@@ -94,6 +98,14 @@
         UINavigationController *navigationController = segue.destinationViewController;
         ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"DetailsSegue"])
+    {
+        DetailViewController *detailsVC= segue.destinationViewController;
+        UITableViewCell *tappedCell=sender;
+        NSIndexPath *tappedIndex= [self.tableView indexPathForCell:tappedCell];
+        detailsVC.post= self.posts[tappedIndex.row];
+        [self.tableView deselectRowAtIndexPath:tappedIndex animated:YES];
     }
 }
 
