@@ -17,7 +17,9 @@
 -(void) loadData{
     self.usernameLabel.text=self.post.author.username;
     self.postCaption.text=self.post.caption;
-    self.postImage.file = self.post[@"image"];//load the image useing the PFFile
+    self.likeCount.text= [NSString stringWithFormat:@"%@", self.post.likeCount];
+    self.postImage.image=nil;
+    self.postImage.file = self.post[@"image"];//load the image using the PFFile
     [self.postImage loadInBackground];
 }
 

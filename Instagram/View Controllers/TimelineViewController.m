@@ -79,7 +79,6 @@
     PostCell *currCell= [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     currCell.post=self.posts[indexPath.row];
     [currCell loadData];//load cell data
-    NSLog(@"object id %@", currCell.post.objectId);
     return currCell;
 }
 

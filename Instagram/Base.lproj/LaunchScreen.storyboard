@@ -15,19 +15,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oq8-rA-Lkg">
-                                <rect key="frame" x="96" y="399" width="222" height="78"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oq8-rA-Lkg">
+                                <rect key="frame" x="96" y="419.5" width="222" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="222" id="ebi-pj-az2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="56"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uyc-to-B6e">
-                                <rect key="frame" x="166" y="309" width="83" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uyc-to-B6e">
+                                <rect key="frame" x="166" y="329" width="83" height="82"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="oq8-rA-Lkg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="97B-E2-Zwo"/>
+                            <constraint firstItem="oq8-rA-Lkg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zwc-Vw-tfI"/>
+                            <constraint firstItem="uyc-to-B6e" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fDf-xj-s3s"/>
+                            <constraint firstItem="oq8-rA-Lkg" firstAttribute="top" secondItem="uyc-to-B6e" secondAttribute="bottom" constant="8" id="xpX-Ct-8vD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

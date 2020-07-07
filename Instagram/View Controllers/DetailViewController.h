@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (strong, nonatomic) Post *post;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 -(void) loadPostDetails;
 @end
