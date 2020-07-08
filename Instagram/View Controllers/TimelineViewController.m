@@ -14,7 +14,7 @@
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
 #import "ProfileViewController.h"
-@interface TimelineViewController ()<PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate>
+@interface TimelineViewController ()<PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate, UIScrollViewDelegate>
 
 @end
 
@@ -30,6 +30,7 @@
     [self.refreshControl addTarget:self action:@selector(refreshTimeline) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
+    self.posts=0;
     [self refreshTimeline];
 
 
@@ -54,9 +55,8 @@
 -(void) refreshTimeline{
     //query for the post table
     PFQuery *postQuery= [PFQuery queryWithClassName:@"Post"];
-    int postLimit=20;
-    
-    postQuery.limit=postLimit;//limit 20 posts
+    self.postLimit+=20;//get 20 more posts each time
+    postQuery.limit=self.postLimit;//limit 20 posts
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
 
@@ -71,6 +71,7 @@
             self.posts=objects;
             [self.tableView reloadData];
         }
+        self.isMoreDataLoading=NO;
         [self.refreshControl endRefreshing];
     }];
 }
@@ -95,7 +96,19 @@
 - (void)didTapUser: (PFUser *)user{
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+     if(!self.isMoreDataLoading){
+         // Calculate the position of one screen length before the bottom of the results
+         int scrollViewContentHeight = self.tableView.contentSize.height;
+         int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+         
+         // When the user has scrolled past the threshold, start requesting
+         if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+             self.isMoreDataLoading = YES;
+             [self refreshTimeline];
+        }
+     }
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
