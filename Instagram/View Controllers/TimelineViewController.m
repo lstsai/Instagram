@@ -14,7 +14,7 @@
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
 #import "ProfileViewController.h"
-@interface TimelineViewController ()<ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate>
+@interface TimelineViewController ()<PostCellDelegate, ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate>
 
 @end
 
@@ -78,6 +78,7 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *currCell= [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     currCell.post=self.posts[indexPath.row];
+    currCell.delegate=self;
     [currCell loadData];//load cell data
     return currCell;
 }
@@ -87,6 +88,9 @@
 }
 - (void)didPost {
     [self refreshTimeline];
+}
+- (void)didTapUser: (PFUser *)user{
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
 #pragma mark - Navigation
@@ -109,8 +113,12 @@
         detailsVC.post= self.posts[tappedIndex.row];
         [self.tableView deselectRowAtIndexPath:tappedIndex animated:YES];
     }
+    else if([segue.identifier isEqualToString:@"profileSegue"])
+    {
+        ProfileViewController *profileVC= segue.destinationViewController;
+        profileVC.user= (PFUser*) sender;
+    }
 }
-
 
 
 @end

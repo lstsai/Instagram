@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSArray *posts;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 
 -(void) configureLayout;
 -(void) refreshData;

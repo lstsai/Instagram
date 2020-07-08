@@ -27,6 +27,12 @@
     self.profileImageView.layer.cornerRadius=self.profileImageView.bounds.size.width/2;
     self.profileImageView.layer.borderWidth=1;
     self.profileImageView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profileImageView addGestureRecognizer:profileTapGesture];
+}
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+
+    [self.delegate didTapUser:self.post.author];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

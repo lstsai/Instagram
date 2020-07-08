@@ -7,7 +7,9 @@
 //
 
 #import "ProfileViewController.h"
-
+#import "DetailViewController.h"
+#import "SceneDelegate.h"
+#import "LoginViewController.h"
 @interface ProfileViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate>
 
 @end
@@ -21,13 +23,24 @@
     self.collectionView.dataSource=self;
     if(self.user==nil)
         self.user=PFUser.currentUser;
+
     [self configureLayout];
     [self refreshData];
     [self.collectionView reloadData];
 }
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"appear");
+    if(self.user.username!= PFUser.currentUser.username)
+    {
+        self.logoutButton.titleLabel.text=@"";
+        self.logoutButton.userInteractionEnabled=NO;
+    }
+    else{
+        self.logoutButton.titleLabel.text=@"Logout";
+        self.logoutButton.userInteractionEnabled=YES;
+    }
     [self refreshData];
+
 }
 -(void) configureLayout{
     
@@ -69,15 +82,36 @@
         [self.collectionView reloadData];
     }];
 }
+- (IBAction)didTapLogout:(id)sender {
+    NSLog(@"logout");
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        if(error)
+            NSLog(@"Error Logging out: %@", error.description);
+        else
+            NSLog(@"Success Logging out");
+    }];
+    //go back to login
+    SceneDelegate *sceneDelegate = (SceneDelegate *) self.view.window.windowScene.delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    sceneDelegate.window.rootViewController = loginViewController;
+}
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"porfileDetailsSegue"])
+    {
+        DetailViewController *deetVC= segue.destinationViewController;
+        UICollectionViewCell *tappedCell= (UICollectionViewCell *) sender;
+        NSIndexPath *indexPath= [self.collectionView indexPathForCell:tappedCell];
+        Post *tappedPost= self.posts[indexPath.item];
+        deetVC.post= tappedPost;
+    }
 }
-*/
 
 @end
