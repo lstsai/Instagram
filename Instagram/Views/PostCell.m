@@ -23,6 +23,11 @@
     self.postImage.file = self.post.image;//load the image using the PFFile
     [self.postImage loadInBackground];
     
+    if(self.post.author[@"profilePicture"]){
+        self.profileImageView.file = self.post.author[@"profilePicture"];
+        [self.profileImageView loadInBackground];
+    }
+    
     self.profileImageView.layer.masksToBounds=YES;
     self.profileImageView.layer.cornerRadius=self.profileImageView.bounds.size.width/2;
     self.profileImageView.layer.borderWidth=1;

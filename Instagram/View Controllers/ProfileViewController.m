@@ -10,7 +10,7 @@
 #import "DetailViewController.h"
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
-@interface ProfileViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate>
+@interface ProfileViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -23,10 +23,17 @@
     self.collectionView.dataSource=self;
     if(self.user==nil)
         self.user=PFUser.currentUser;
-
+    [self loadProfileImage];
     [self configureLayout];
     [self refreshData];
     [self.collectionView reloadData];
+}
+-(void) loadProfileImage{
+    self.profilePic.layer.masksToBounds=YES;
+    self.profilePic.layer.cornerRadius=self.profilePic.bounds.size.width/2;    
+    UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapProfilePic)];
+    [self.profilePic addGestureRecognizer:profileTapGesture];
+    self.profilePic.userInteractionEnabled=YES;
 }
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"appear");
@@ -41,6 +48,33 @@
     }
     [self refreshData];
 
+}
+- (void)didTapProfilePic{
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    //check if this device has a camera before presenting the picker
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    [self.profilePic setImage:editedImage];
+    
+    //save image to database
+    NSData *pImageData = UIImagePNGRepresentation(editedImage);
+    NSString *profileImageName= [self.user.username stringByAppendingString:@".png"];
+    self.user[@"profilePicture"]= [PFFileObject fileObjectWithName:profileImageName data:pImageData];
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self.user saveInBackground];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void) configureLayout{
     

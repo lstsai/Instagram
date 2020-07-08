@@ -135,7 +135,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgM-UF-ddJ">
                                                     <rect key="frame" x="19" y="15" width="38" height="36"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="973-rJ-P1V">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="973-rJ-P1V" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="38" height="36"/>
                                                             <gestureRecognizers/>
                                                             <constraints>
@@ -234,7 +234,7 @@
                                             <outlet property="likeCount" destination="zmW-B6-avK" id="fcq-DU-3il"/>
                                             <outlet property="postCaption" destination="YJ0-5v-Fh1" id="nI9-dC-uRK"/>
                                             <outlet property="postImage" destination="Ydy-Fa-Bgw" id="Aat-Wu-w1I"/>
-                                            <outlet property="profileImageView" destination="xgM-UF-ddJ" id="XT0-3j-9Nx"/>
+                                            <outlet property="profileImageView" destination="973-rJ-P1V" id="ztQ-nd-azY"/>
                                             <outlet property="timeLabel" destination="dTQ-z0-uay" id="3h0-IS-FZ8"/>
                                             <outlet property="usernameLabel" destination="RAb-cd-lOd" id="ESV-rI-3T1"/>
                                             <segue destination="ajE-UL-Vv6" kind="show" identifier="DetailsSegue" id="M1z-nH-Yp7"/>
@@ -558,7 +558,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="jwH-7M-y50">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="jwH-7M-y50">
                                 <rect key="frame" x="33" y="84" width="73" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="8F7-nj-Zb8"/>

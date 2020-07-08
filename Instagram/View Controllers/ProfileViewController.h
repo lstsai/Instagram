@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void) configureLayout;
 -(void) refreshData;
+-(void) didTapProfilePic;
+-(void) loadProfileImage;
 
 @end
 

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *likeCount;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIView *profileImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (nonatomic, weak) id<PostCellDelegate> delegate;
 
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender;
