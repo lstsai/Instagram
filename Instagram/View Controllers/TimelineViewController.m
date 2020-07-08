@@ -13,7 +13,8 @@
 #import "Post.h"
 #import "ComposeViewController.h"
 #import "DetailViewController.h"
-@interface TimelineViewController ()<ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#import "ProfileViewController.h"
+@interface TimelineViewController ()<ComposeViewControllerDelegate, UITableViewDelegate,UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITabBarControllerDelegate>
 
 @end
 
@@ -28,7 +29,7 @@
     self.refreshControl= [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshTimeline) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-
+    
     [self refreshTimeline];
 
 
@@ -66,8 +67,7 @@
         }
         else
         {
-            NSLog(@"Success getting post");
-            //[Post postsWithArray:objects];
+            //NSLog(@"Success getting post %@", objects);
             self.posts=objects;
             [self.tableView reloadData];
         }
@@ -84,6 +84,9 @@
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+- (void)didPost {
+    [self refreshTimeline];
 }
 
 #pragma mark - Navigation
@@ -108,8 +111,6 @@
     }
 }
 
-- (void)didPost {
-    [self refreshTimeline];
-}
+
 
 @end

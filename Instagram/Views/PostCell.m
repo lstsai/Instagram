@@ -20,7 +20,7 @@
     self.timeLabel.text=[[self.post.createdAt shortTimeAgoSinceNow] stringByAppendingString:@" ago"];
     self.likeCount.text= [NSString stringWithFormat:@"%@", self.post.likeCount];
     self.postImage.image=nil;
-    self.postImage.file = self.post[@"image"];//load the image using the PFFile
+    self.postImage.file = self.post.image;//load the image using the PFFile
     [self.postImage loadInBackground];
     
     self.profileImageView.layer.masksToBounds=YES;

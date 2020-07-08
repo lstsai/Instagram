@@ -11,6 +11,8 @@
 		7ACFAFD0650CB897EB2D87B1 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B059771E7F3B76B1AE6ADF4F /* Pods_Instagram_InstagramUITests.framework */; };
 		D21B4E4C7C1214B614560F33 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3BBAA28319CE302BC216972 /* Pods_Instagram.framework */; };
 		DC43032024B3DC12008BEA2A /* InstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFF7A5624B3BACA0022D6C7 /* InstagramTests.m */; };
+		DC5C542724B548FA00A67FDC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5C542624B548FA00A67FDC /* ProfileViewController.m */; };
+		DC5C542D24B54A2700A67FDC /* PostGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5C542C24B54A2700A67FDC /* PostGridCell.m */; };
 		DCC1615124B3E829001F14C3 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC1615024B3E829001F14C3 /* Post.m */; };
 		DCE5914924B3DE770025F879 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE5914824B3DE770025F879 /* ComposeViewController.m */; };
 		DCFF7A3C24B3BAC80022D6C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFF7A3B24B3BAC80022D6C7 /* AppDelegate.m */; };
@@ -51,6 +53,10 @@
 		7DA5A056B2EF40990D27C84B /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		B059771E7F3B76B1AE6ADF4F /* Pods_Instagram_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BBAA28319CE302BC216972 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5C542524B548F900A67FDC /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		DC5C542624B548FA00A67FDC /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		DC5C542B24B54A2700A67FDC /* PostGridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostGridCell.h; sourceTree = "<group>"; };
+		DC5C542C24B54A2700A67FDC /* PostGridCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostGridCell.m; sourceTree = "<group>"; };
 		DCC1614F24B3E829001F14C3 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		DCC1615024B3E829001F14C3 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		DCE5914724B3DE770025F879 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
@@ -205,6 +211,8 @@
 				DCE5914824B3DE770025F879 /* ComposeViewController.m */,
 				DCFFE9E024B4F28500DE2EA5 /* DetailViewController.h */,
 				DCFFE9E124B4F28500DE2EA5 /* DetailViewController.m */,
+				DC5C542524B548F900A67FDC /* ProfileViewController.h */,
+				DC5C542624B548FA00A67FDC /* ProfileViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -214,6 +222,8 @@
 			children = (
 				DCFF7A7924B3D93D0022D6C7 /* PostCell.h */,
 				DCFF7A7A24B3D93D0022D6C7 /* PostCell.m */,
+				DC5C542B24B54A2700A67FDC /* PostGridCell.h */,
+				DC5C542C24B54A2700A67FDC /* PostGridCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -459,7 +469,9 @@
 				DCFF7A3C24B3BAC80022D6C7 /* AppDelegate.m in Sources */,
 				DCFF7A4D24B3BACA0022D6C7 /* main.m in Sources */,
 				DCFFE9E224B4F28500DE2EA5 /* DetailViewController.m in Sources */,
+				DC5C542D24B54A2700A67FDC /* PostGridCell.m in Sources */,
 				DCFF7A3F24B3BAC80022D6C7 /* SceneDelegate.m in Sources */,
+				DC5C542724B548FA00A67FDC /* ProfileViewController.m in Sources */,
 				DCFF7A7B24B3D93D0022D6C7 /* PostCell.m in Sources */,
 				DCE5914924B3DE770025F879 /* ComposeViewController.m in Sources */,
 				DCFF7A7124B3CD330022D6C7 /* LoginViewController.m in Sources */,
