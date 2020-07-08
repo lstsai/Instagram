@@ -34,11 +34,13 @@
     [Post postUserImage:self.postImage.image withCaption:self.captionTextView.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if(succeeded){
             NSLog(@"Success posting!");
-            [self.delegate didPost];
+            //[self.delegate didPost];
+            int timelineIndex=0;
+            [self.tabBarController setSelectedIndex:timelineIndex];
         }
         else
             NSLog(@"Error posting: %@", error.description);
-        [self dismissViewControllerAnimated:YES completion:nil];
+        //[self dismissViewControllerAnimated:YES completion:nil];
         
     }];
 

@@ -88,6 +88,9 @@
 }
 - (void)didPost {
     [self refreshTimeline];
+    //[self showViewController:self sender:nil];
+    //[self.tabBarController setSelectedIndex:0];
+
 }
 - (void)didTapUser: (PFUser *)user{
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
