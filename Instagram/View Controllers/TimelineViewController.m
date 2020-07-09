@@ -36,7 +36,6 @@
 
 }
 //implement delegate method
-
 - (IBAction)didTapLogout:(id)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error)
@@ -50,7 +49,6 @@
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     sceneDelegate.window.rootViewController = loginViewController;
 }
-
 
 -(void) refreshTimeline{
     //query for the post table
@@ -93,15 +91,19 @@
     //[self.tabBarController setSelectedIndex:0];
 
 }
+
 - (void)didTapUser: (PFUser *)user{
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
+
 -(void)didTapComment: (Post *)post{
     [self performSegueWithIdentifier:@"timelineCommentSegue" sender:post];
 }
--(void) tapLikeButton{
+
+-(void) didTapLikeButton{
     [self refreshTimeline];
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
      if(!self.isMoreDataLoading){
          // Calculate the position of one screen length before the bottom of the results
@@ -115,8 +117,8 @@
         }
      }
 }
-#pragma mark - Navigation
 
+#pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

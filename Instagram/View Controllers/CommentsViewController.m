@@ -23,6 +23,7 @@
     [self getPostComments];
     [self.tableView reloadData];
 }
+
 -(void) loadProfileImage{
     self.profileImage.layer.masksToBounds=YES;
     self.profileImage.layer.cornerRadius=self.profileImage.bounds.size.width/2;
@@ -32,6 +33,7 @@
         [self.profileImage loadInBackground];
     }
 }
+
 - (void) getPostComments{
     PFQuery *commentQuery= [PFQuery queryWithClassName:@"Comment"];
     [commentQuery orderByDescending:@"createdAt"];
@@ -52,6 +54,7 @@
         }
     }];
 }
+
 - (IBAction)didTapPost:(id)sender {
     [Comment postComment:self.commentTextField.text forPost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if(error)

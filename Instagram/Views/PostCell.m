@@ -41,19 +41,29 @@
 
     int likeValue = [self.post.likeCount intValue];
     if(!self.likeButton.selected)
-    {
         self.post.likeCount = [NSNumber numberWithInt:likeValue + 1];
-        self.likeButton.selected=YES;
-        self.likeButton.tintColor=[UIColor redColor];
-    }
     else
-    {
         self.post.likeCount = [NSNumber numberWithInt:likeValue - 1];
-        self.likeButton.selected=NO;
-        self.likeButton.tintColor=[UIColor blackColor];
-    }
-    [self.post saveInBackground];
-    [self.delegate tapLikeButton];
+
+    [self.post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded)
+        {
+            if(!self.likeButton.selected)
+            {
+                self.likeButton.selected=YES;
+                self.likeButton.tintColor=[UIColor redColor];
+            }
+            else
+            {
+                self.likeButton.selected=NO;
+                self.likeButton.tintColor=[UIColor blackColor];
+            }
+        }
+        else{
+            NSLog(@"Error liking post: %@", error.localizedDescription);
+        }
+    }];
+    [self.delegate didTapLikeButton];
 }
 - (IBAction)didTapComment:(id)sender {
     [self.delegate didTapComment:self.post];
