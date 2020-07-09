@@ -28,6 +28,7 @@
     [self refreshData];
     [self.collectionView reloadData];
 }
+
 -(void) loadProfileImage{
     
     self.profilePic.layer.masksToBounds=YES;
@@ -42,6 +43,7 @@
     }
     
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"appear");
     if(self.user.username!= PFUser.currentUser.username)
@@ -56,6 +58,7 @@
     [self refreshData];
 
 }
+
 - (void)didTapProfilePic{
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -70,6 +73,7 @@
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
@@ -83,6 +87,7 @@
     [self.user saveInBackground];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 -(void) configureLayout{
     
     int minMargins=1;
@@ -90,12 +95,13 @@
     layout.minimumInteritemSpacing=minMargins;
     layout.minimumLineSpacing=minMargins;
     
-    CGFloat postersPerLine=3;
-    CGFloat itemWidth=(self.collectionView.frame.size.width-layout.minimumInteritemSpacing*(postersPerLine-1)-2*minMargins)/postersPerLine;
+    CGFloat postsPerLine=3;
+    CGFloat itemWidth=(self.collectionView.frame.size.width-layout.minimumInteritemSpacing*(postsPerLine-1)-(2*minMargins))/postsPerLine;
     //scale it to be the size you want per line,take into account interitem spacing and the margins of screen
     
     layout.itemSize=CGSizeMake(itemWidth, itemWidth);
 }
+
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostGridCell *postGC= [collectionView dequeueReusableCellWithReuseIdentifier:@"PostGridCell" forIndexPath:indexPath];
     postGC.post= self.posts[indexPath.item];
@@ -106,6 +112,7 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
 }
+
 - (void) refreshData{
     PFQuery *profileQuery= [PFQuery queryWithClassName:@"Post"];
     [profileQuery includeKey:@"author"];
@@ -124,6 +131,7 @@
         [self.collectionView reloadData];
     }];
 }
+
 - (IBAction)didTapLogout:(id)sender {
     NSLog(@"logout");
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {

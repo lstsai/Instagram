@@ -7,8 +7,8 @@
 //
 
 #import "CommentsViewController.h"
-
-@interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "ProfileViewController.h"
+@interface CommentsViewController ()<UITableViewDelegate, UITableViewDataSource, CommentCellDelegate>
 
 @end
 
@@ -79,21 +79,31 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CommentCell *currCell= [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     Comment *currComment= self.comments[indexPath.row];
-    currCell.comment=currComment;
-    [currCell loadComment];
+    currCell.delegate=self;
+    [currCell loadComment:currComment];
     return currCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.comments.count;
 }
-/*
+
+- (void)didTapUser:(nonnull PFUser *)user {
+    [self performSegueWithIdentifier:@"commentProfileSegue" sender:user];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if([segue.identifier isEqualToString:@"commentProfileSegue"])
+    {
+        ProfileViewController *profileVC= (ProfileViewController*)segue.destinationViewController;
+        profileVC.user=(PFUser*) sender;
+    }
 }
-*/
+
 @end

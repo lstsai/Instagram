@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didTapComment: (Post *)post;
 - (void)didTapLikeButton;
 @end
+
 @interface PostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postCaption;
 @property (weak, nonatomic) IBOutlet PFImageView *postImage;

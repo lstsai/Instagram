@@ -23,6 +23,7 @@
     }];
     [self.alert addAction:okAction];
 }
+
 - (IBAction)didTapSignUp:(id)sender {
     [self.activityIndicator startAnimating];
     PFUser *newUser = [PFUser user];
@@ -54,6 +55,7 @@
         }];
     }
 }
+
 - (IBAction)didTapLogin:(id)sender {
     [self.activityIndicator startAnimating];
     

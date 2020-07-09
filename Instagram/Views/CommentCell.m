@@ -14,23 +14,29 @@
     [super awakeFromNib];
     // Initialization code
 }
--(void) loadComment{
+- (void) loadComment:(Comment*) comment{
     //NSLog(@"Load comment %@", self.comment);
     self.profileImage.layer.masksToBounds=YES;
     self.profileImage.layer.cornerRadius=self.profileImage.bounds.size.width/2;
-    //UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapProfilePic)];
-    //[self.profilePic addGestureRecognizer:profileTapGesture];
-    //self.profilePic.userInteractionEnabled=YES;
-    if(self.comment.author[@"profilePicture"])
+    UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profileImage setUserInteractionEnabled:YES];
+    [self.profileImage addGestureRecognizer:profileTapGesture];
+    self.author=comment.author;
+    if(comment.author[@"profilePicture"])
     {
-        self.profileImage.file=self.comment.author[@"profilePicture"];
+        self.profileImage.file=comment.author[@"profilePicture"];
         [self.profileImage loadInBackground];
     }
-    self.commentLabel.text=self.comment.commentText;
-    self.timeLabel.text=[self.comment.createdAt shortTimeAgoSinceNow];
-    self.usernameLabel.text=self.comment.author.username;
+    self.commentLabel.text=comment.commentText;
+    self.timeLabel.text=[comment.createdAt shortTimeAgoSinceNow];
+    self.usernameLabel.text=comment.author.username;
     
 }
+
+-(void) didTapUserProfile:(UITapGestureRecognizer*) sender{
+    [self.delegate didTapUser:self.author];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

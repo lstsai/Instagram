@@ -24,6 +24,8 @@
     self.postImage.file = self.post.image;//load the image using the PFFile
     [self.postImage loadInBackground];
     
+    self.profileImageView.image=nil;
+    self.profileImageView.gestureRecognizers=nil;
     if(self.post.author[@"profilePicture"]){
         self.profileImageView.file = self.post.author[@"profilePicture"];
         [self.profileImageView loadInBackground];
@@ -33,7 +35,9 @@
     self.profileImageView.layer.cornerRadius=self.profileImageView.bounds.size.width/2;
     self.profileImageView.layer.borderWidth=1;
     self.profileImageView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    
     UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profileImageView setUserInteractionEnabled:YES];
     [self.profileImageView addGestureRecognizer:profileTapGesture];
     
 }
@@ -69,7 +73,6 @@
     [self.delegate didTapComment:self.post];
 }
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
-
     [self.delegate didTapUser:self.post.author];
 }
 

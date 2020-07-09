@@ -13,13 +13,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CommentCellDelegate
+- (void)didTapUser: (PFUser *)user;
+@end
+
 @interface CommentCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
-@property (strong, nonatomic) Comment* comment;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-- (void) loadComment;
+@property (nonatomic, weak) id<CommentCellDelegate> delegate;
+@property (nonatomic, weak) PFUser *author;
+
+- (void) loadComment:(Comment*) comment;
+-(void) didTapUserProfile:(UITapGestureRecognizer*) sender;
 @end
 
 NS_ASSUME_NONNULL_END

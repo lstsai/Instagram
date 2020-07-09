@@ -194,7 +194,7 @@
                                                     </state>
                                                     <state key="selected" backgroundImage="heart.fill" catalog="system"/>
                                                     <connections>
-                                                        <action selector="didTapLike:" destination="sb8-k4-ORw" eventType="touchUpInside" id="Sy3-yR-97e"/>
+                                                        <action selector="didTapLike:" destination="sb8-k4-ORw" eventType="touchUpInside" id="1HM-s5-T8k"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BG-Gv-aA3">
@@ -376,6 +376,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <state key="selected" image="heart.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapLike:" destination="ajE-UL-Vv6" eventType="touchUpInside" id="Smc-wi-bYC"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHl-MM-8pL" customClass="PFImageView">
                                 <rect key="frame" x="0.0" y="145" width="414" height="370"/>
@@ -421,10 +424,14 @@
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="87p-pM-7xy" customClass="PFImageView">
                                 <rect key="frame" x="16" y="72" width="62" height="62"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="CZg-af-So5"/>
                                     <constraint firstAttribute="width" constant="62" id="ZoE-rV-S3W"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QzU-Og-AfA" appends="YES" id="z4f-Ie-vDS"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -475,6 +482,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CBl-28-gY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="QzU-Og-AfA">
+                    <connections>
+                        <segue destination="8JC-hV-GFW" kind="show" identifier="profileSegue" id="v2i-5h-qF1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="785.50724637681162" y="1718.9732142857142"/>
         </scene>
@@ -613,6 +625,7 @@
                         <outlet property="commentTextField" destination="ChR-L2-OxF" id="vW0-1i-gZT"/>
                         <outlet property="profileImage" destination="HGD-H4-6Fj" id="EYI-2t-6dJ"/>
                         <outlet property="tableView" destination="QuF-pP-Eby" id="jzl-lv-j3H"/>
+                        <segue destination="8JC-hV-GFW" kind="show" identifier="commentProfileSegue" id="YCF-aX-fff"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSg-IJ-qML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -770,14 +783,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_tab" translatesAutoresizingMaskIntoConstraints="NO" id="jwH-7M-y50" customClass="PFImageView">
-                                <rect key="frame" x="33" y="84" width="73" height="73"/>
+                                <rect key="frame" x="33" y="28" width="73" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="8F7-nj-Zb8"/>
                                     <constraint firstAttribute="width" constant="73" id="kY5-6R-E9d"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGQ-x6-XNo">
-                                <rect key="frame" x="124" y="95" width="97" height="26"/>
+                                <rect key="frame" x="124" y="39" width="97" height="26"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -795,9 +808,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ng6-ZY-Hbc">
-                                <rect key="frame" x="0.0" y="192" width="414" height="567"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="672"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rvm-Qb-wf4">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rvm-Qb-wf4">
                                     <size key="itemSize" width="111" height="111"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -830,7 +843,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD5-gJ-BbK">
-                                <rect key="frame" x="347" y="93" width="48" height="30"/>
+                                <rect key="frame" x="347" y="37" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="didTapLogout:" destination="8JC-hV-GFW" eventType="touchUpInside" id="0DD-ep-Zbu"/>
@@ -880,9 +893,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JZ7-Aj-kmu"/>
+        <segue reference="YCF-aX-fff"/>
         <segue reference="HbC-bm-coq"/>
-        <segue reference="EqC-Pq-Z4p"/>
+        <segue reference="6OZ-em-ebR"/>
         <segue reference="M1z-nH-Yp7"/>
     </inferredMetricsTieBreakers>
     <resources>

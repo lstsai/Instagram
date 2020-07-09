@@ -21,6 +21,7 @@
     self.didEditCaption=NO;
     self.captionPlaceholer=@"Write a caption...";
 }
+
 -(void) viewDidAppear:(BOOL)animated{
     if(self.didEditCaption &&[self.captionTextView.text isEqualToString:@""])
     {
@@ -29,6 +30,7 @@
         self.didEditCaption=NO;
     }
 }
+
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     //clear text when the starting to type
     if(!self.didEditCaption)
@@ -37,9 +39,11 @@
         self.captionTextView.text=@"";
     }
 }
+
 - (IBAction)didTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)didTapShare:(id)sender {
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
@@ -57,6 +61,7 @@
     }];
 
 }
+
 - (IBAction)didTapImagePicker:(id)sender {
     
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -72,6 +77,7 @@
     }
     [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
@@ -83,6 +89,7 @@
     // Dismiss UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
