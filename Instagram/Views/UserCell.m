@@ -24,10 +24,7 @@
         [self.profileImage loadInBackground];
     }
     self.usernameLabel.text=user.username;
-    if(user[@"bio"])
-    {
-        self.bioLabel.text=user[@"bio"];
-    }
+    self.bioLabel.text=user[@"bio"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

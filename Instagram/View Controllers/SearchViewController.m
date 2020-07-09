@@ -7,7 +7,7 @@
 //
 
 #import "SearchViewController.h"
-
+#import "ProfileViewController.h"
 @interface SearchViewController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @end
@@ -43,16 +43,6 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UserCell *userCell= [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
     [userCell loadProfileCell:self.users[indexPath.row]];
@@ -62,4 +52,23 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.users.count;
 }
+
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"profileSegue"])
+    {
+        UITableViewCell *tappedCell= (UITableViewCell*) sender;
+        NSIndexPath *tappedIndex= [self.tableView indexPathForCell:tappedCell];
+        ProfileViewController *profileVC= segue.destinationViewController;
+        profileVC.user=self.users[tappedIndex.row];
+        [tappedCell setSelected:NO];
+    
+    }
+}
+
 @end

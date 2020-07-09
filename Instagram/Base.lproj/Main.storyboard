@@ -724,6 +724,7 @@
                                             <outlet property="bioLabel" destination="8qy-jd-DLz" id="aHk-WT-xao"/>
                                             <outlet property="profileImage" destination="yqd-e7-G1a" id="771-Le-S9y"/>
                                             <outlet property="usernameLabel" destination="VoQ-wA-Y9Q" id="epj-CK-Cw4"/>
+                                            <segue destination="8JC-hV-GFW" kind="show" identifier="profileSegue" id="NXQ-0F-aOP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1034,7 +1035,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DbS-WU-7aK"/>
+        <segue reference="NXQ-0F-aOP"/>
         <segue reference="eTd-Uo-npB"/>
         <segue reference="6OZ-em-ebR"/>
         <segue reference="pz1-dU-UEK"/>
