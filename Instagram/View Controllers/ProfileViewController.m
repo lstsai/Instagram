@@ -23,13 +23,13 @@
     self.collectionView.dataSource=self;
     if(self.user==nil)
         self.user=PFUser.currentUser;
-    [self loadProfileImage];
+    [self loadProfile];
     [self configureLayout];
     [self refreshData];
     [self.collectionView reloadData];
 }
 
--(void) loadProfileImage{
+-(void) loadProfile{
     
     self.profilePic.layer.masksToBounds=YES;
     self.profilePic.layer.cornerRadius=self.profilePic.bounds.size.width/2;    
@@ -42,6 +42,10 @@
         [self.profilePic loadInBackground];
     }
     
+    if(self.user[@"bio"])
+        self.bioLabel.text=self.user[@"bio"];
+    else
+        self.bioLabel.text=@"Bio";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -147,6 +151,27 @@
     sceneDelegate.window.rootViewController = loginViewController;
 }
 
+- (IBAction)didTapBio:(id)sender {
+    if(self.user== PFUser.currentUser)
+    {
+        self.bioTextField.text=self.bioLabel.text;
+        self.bioLabel.alpha=0;
+        self.bioTextField.alpha=1;
+        self.changeBioButton.alpha=1;
+        [self.changeBioButton setUserInteractionEnabled:YES];
+    }
+}
+
+- (IBAction)didTapChange:(id)sender {
+    self.bioLabel.text=self.bioTextField.text;
+    self.bioTextField.alpha=0;
+    self.changeBioButton.alpha=0;
+    self.bioLabel.alpha=1;
+    [self.changeBioButton setUserInteractionEnabled:NO];
+    
+    self.user[@"bio"]= self.bioLabel.text;
+    [self.user saveInBackground];
+}
 
 #pragma mark - Navigation
 

@@ -20,11 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) PFUser *user;
 @property (strong, nonatomic) NSArray *posts;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+@property (weak, nonatomic) IBOutlet UITextField *bioTextField;
+@property (weak, nonatomic) IBOutlet UIButton *changeBioButton;
 
 -(void) configureLayout;
 -(void) refreshData;
 -(void) didTapProfilePic;
--(void) loadProfileImage;
+-(void) loadProfile;
 
 @end
 
