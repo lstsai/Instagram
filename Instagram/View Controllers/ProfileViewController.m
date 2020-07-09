@@ -29,11 +29,18 @@
     [self.collectionView reloadData];
 }
 -(void) loadProfileImage{
+    
     self.profilePic.layer.masksToBounds=YES;
     self.profilePic.layer.cornerRadius=self.profilePic.bounds.size.width/2;    
     UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapProfilePic)];
     [self.profilePic addGestureRecognizer:profileTapGesture];
     self.profilePic.userInteractionEnabled=YES;
+    if(self.user[@"profilePicture"])
+    {
+        self.profilePic.file=self.user[@"profilePicture"];
+        [self.profilePic loadInBackground];
+    }
+    
 }
 - (void)viewDidAppear:(BOOL)animated {
     NSLog(@"appear");
@@ -103,6 +110,7 @@
     PFQuery *profileQuery= [PFQuery queryWithClassName:@"Post"];
     [profileQuery includeKey:@"author"];
     [profileQuery whereKey:@"author" equalTo:self.user];
+    [profileQuery orderByDescending:@"createdAt"];
     
     [profileQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if(error)

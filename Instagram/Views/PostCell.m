@@ -19,6 +19,7 @@
     self.postCaption.text=self.post.caption;
     self.timeLabel.text=[[self.post.createdAt shortTimeAgoSinceNow] stringByAppendingString:@" ago"];
     self.likeCount.text= [NSString stringWithFormat:@"%@", self.post.likeCount];
+    self.commentCount.text= [NSString stringWithFormat:@"%@", self.post.commentCount];
     self.postImage.image=nil;
     self.postImage.file = self.post.image;//load the image using the PFFile
     [self.postImage loadInBackground];

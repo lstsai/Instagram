@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (nonatomic, weak) id<PostCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UILabel *commentCount;
 
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender;
 - (void) loadData;
