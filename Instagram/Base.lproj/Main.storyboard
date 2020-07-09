@@ -192,7 +192,10 @@
                                                     <state key="normal" backgroundImage="heart" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                                     </state>
-                                                    <state key="selected" image="heart.fill" catalog="system"/>
+                                                    <state key="selected" backgroundImage="heart.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="sb8-k4-ORw" eventType="touchUpInside" id="Sy3-yR-97e"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BG-Gv-aA3">
                                                     <rect key="frame" x="42" y="452" width="28" height="26"/>
@@ -203,7 +206,7 @@
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" backgroundImage="bubble.left" catalog="system"/>
                                                     <connections>
-                                                        <segue destination="D3V-yR-Uf6" kind="presentation" identifier="timelineCommentSegue" id="yww-tM-vv3"/>
+                                                        <action selector="didTapComment:" destination="sb8-k4-ORw" eventType="touchUpInside" id="iaN-3v-ac2"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEu-GT-b9P">
@@ -317,6 +320,7 @@
                     <connections>
                         <outlet property="tableView" destination="gT9-ri-N2w" id="0yf-O8-dGG"/>
                         <segue destination="8JC-hV-GFW" kind="show" identifier="profileSegue" id="JZ7-Aj-kmu"/>
+                        <segue destination="D3V-yR-Uf6" kind="presentation" identifier="timelineCommentSegue" id="EqC-Pq-Z4p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zra-Tm-agO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -878,7 +882,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="JZ7-Aj-kmu"/>
         <segue reference="HbC-bm-coq"/>
-        <segue reference="yww-tM-vv3"/>
+        <segue reference="EqC-Pq-Z4p"/>
         <segue reference="M1z-nH-Yp7"/>
     </inferredMetricsTieBreakers>
     <resources>

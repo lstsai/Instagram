@@ -96,6 +96,12 @@
 - (void)didTapUser: (PFUser *)user{
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
+-(void)didTapComment: (Post *)post{
+    [self performSegueWithIdentifier:@"timelineCommentSegue" sender:post];
+}
+-(void) tapLikeButton{
+    [self refreshTimeline];
+}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
      if(!self.isMoreDataLoading){
          // Calculate the position of one screen length before the bottom of the results
@@ -134,7 +140,11 @@
         ProfileViewController *profileVC= segue.destinationViewController;
         profileVC.user= (PFUser*) sender;
     }
-
+    else if([segue.identifier isEqualToString:@"timelineCommentSegue"])
+    {
+        CommentsViewController *commentVC= segue.destinationViewController;
+        commentVC.post= (Post*) sender;
+    }
 }
 
 

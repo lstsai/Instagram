@@ -15,7 +15,7 @@
     // Initialization code
 }
 -(void) loadComment{
-    NSLog(@"Load comment %@", self.comment);
+    //NSLog(@"Load comment %@", self.comment);
     self.profileImage.layer.masksToBounds=YES;
     self.profileImage.layer.cornerRadius=self.profileImage.bounds.size.width/2;
     //UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapProfilePic)];

@@ -35,6 +35,28 @@
     self.profileImageView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     UIGestureRecognizer *profileTapGesture= [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
     [self.profileImageView addGestureRecognizer:profileTapGesture];
+    
+}
+- (IBAction)didTapLike:(id)sender {
+
+    int likeValue = [self.post.likeCount intValue];
+    if(!self.likeButton.selected)
+    {
+        self.post.likeCount = [NSNumber numberWithInt:likeValue + 1];
+        self.likeButton.selected=YES;
+        self.likeButton.tintColor=[UIColor redColor];
+    }
+    else
+    {
+        self.post.likeCount = [NSNumber numberWithInt:likeValue - 1];
+        self.likeButton.selected=NO;
+        self.likeButton.tintColor=[UIColor blackColor];
+    }
+    [self.post saveInBackground];
+    [self.delegate tapLikeButton];
+}
+- (IBAction)didTapComment:(id)sender {
+    [self.delegate didTapComment:self.post];
 }
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
 

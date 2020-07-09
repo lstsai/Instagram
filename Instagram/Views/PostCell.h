@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PostCellDelegate
 - (void)didTapUser: (PFUser *)user;
+- (void)didTapComment: (Post *)post;
+- (void)tapLikeButton;
 @end
 @interface PostCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *postCaption;
