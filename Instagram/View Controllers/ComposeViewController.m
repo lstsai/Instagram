@@ -18,12 +18,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.captionTextView.delegate=self;
+    self.didEditCaption=NO;
+    self.captionPlaceholer=@"Write a caption...";
 }
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    //clear text when the starting to type
-    if([self.captionTextView.text isEqualToString:@"Write a caption..."])
+-(void) viewDidAppear:(BOOL)animated{
+    if(self.didEditCaption &&[self.captionTextView.text isEqualToString:@""])
     {
+        [self.captionTextView endEditing:YES];
+        self.captionTextView.text=self.captionPlaceholer;
+        self.didEditCaption=NO;
+    }
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    //clear text when the starting to type
+    if(!self.didEditCaption)
+    {
+        self.didEditCaption=YES;
         self.captionTextView.text=@"";
     }
 }

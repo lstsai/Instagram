@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UITextView *captionTextView;
 @property (weak, nonatomic) id<ComposeViewControllerDelegate> delegate;
+@property (nonatomic) BOOL didEditCaption;
+@property (weak, nonatomic) NSString* captionPlaceholer;
 
 @end
 
