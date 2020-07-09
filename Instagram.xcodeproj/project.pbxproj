@@ -11,6 +11,8 @@
 		7ACFAFD0650CB897EB2D87B1 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B059771E7F3B76B1AE6ADF4F /* Pods_Instagram_InstagramUITests.framework */; };
 		D21B4E4C7C1214B614560F33 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3BBAA28319CE302BC216972 /* Pods_Instagram.framework */; };
 		DC43032024B3DC12008BEA2A /* InstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFF7A5624B3BACA0022D6C7 /* InstagramTests.m */; };
+		DC51782524B7C7C200D0E50D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51782424B7C7C200D0E50D /* SearchViewController.m */; };
+		DC51782824B7C82700D0E50D /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC51782724B7C82700D0E50D /* UserCell.m */; };
 		DC5C542724B548FA00A67FDC /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5C542624B548FA00A67FDC /* ProfileViewController.m */; };
 		DC5C542D24B54A2700A67FDC /* PostGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5C542C24B54A2700A67FDC /* PostGridCell.m */; };
 		DCB73FDD24B68083009E202D /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB73FDC24B68083009E202D /* CommentsViewController.m */; };
@@ -56,6 +58,10 @@
 		7DA5A056B2EF40990D27C84B /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
 		B059771E7F3B76B1AE6ADF4F /* Pods_Instagram_InstagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram_InstagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3BBAA28319CE302BC216972 /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC51782324B7C7C200D0E50D /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		DC51782424B7C7C200D0E50D /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		DC51782624B7C82700D0E50D /* UserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		DC51782724B7C82700D0E50D /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		DC5C542524B548F900A67FDC /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		DC5C542624B548FA00A67FDC /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		DC5C542B24B54A2700A67FDC /* PostGridCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostGridCell.h; sourceTree = "<group>"; };
@@ -226,6 +232,8 @@
 				DC5C542624B548FA00A67FDC /* ProfileViewController.m */,
 				DCB73FDB24B68083009E202D /* CommentsViewController.h */,
 				DCB73FDC24B68083009E202D /* CommentsViewController.m */,
+				DC51782324B7C7C200D0E50D /* SearchViewController.h */,
+				DC51782424B7C7C200D0E50D /* SearchViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -239,6 +247,8 @@
 				DC5C542C24B54A2700A67FDC /* PostGridCell.m */,
 				DCB73FE124B68573009E202D /* CommentCell.h */,
 				DCB73FE224B68573009E202D /* CommentCell.m */,
+				DC51782624B7C82700D0E50D /* UserCell.h */,
+				DC51782724B7C82700D0E50D /* UserCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -485,9 +495,11 @@
 				DCFF7A4D24B3BACA0022D6C7 /* main.m in Sources */,
 				DCFFE9E224B4F28500DE2EA5 /* DetailViewController.m in Sources */,
 				DC5C542D24B54A2700A67FDC /* PostGridCell.m in Sources */,
+				DC51782824B7C82700D0E50D /* UserCell.m in Sources */,
 				DCFF7A3F24B3BAC80022D6C7 /* SceneDelegate.m in Sources */,
 				DC5C542724B548FA00A67FDC /* ProfileViewController.m in Sources */,
 				DCFF7A7B24B3D93D0022D6C7 /* PostCell.m in Sources */,
+				DC51782524B7C7C200D0E50D /* SearchViewController.m in Sources */,
 				DCE5914924B3DE770025F879 /* ComposeViewController.m in Sources */,
 				DCB73FE024B6830C009E202D /* Comment.m in Sources */,
 				DCB73FE324B68573009E202D /* CommentCell.m in Sources */,
