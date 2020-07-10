@@ -76,8 +76,8 @@
     //add this user to the following array of current
     if(!self.followButton.selected)
     {
-        //if (!PFUser.currentUser[@"following"])
-           // PFUser.currentUser[@"following"]= [[NSMutableArray alloc] init];
+        if (!PFUser.currentUser[@"following"])
+            PFUser.currentUser[@"following"]= [[NSMutableArray alloc] init];
 //        [PFUser.currentUser[@"following"] addObject:self.user.objectId];
         PFUser.currentUser[@"following"]=[PFUser.currentUser[@"following"] arrayByAddingObject:self.user.objectId];
         self.followButton.selected=YES;
@@ -87,7 +87,7 @@
     {
         //remove from array to unfollow
         //weird work around bc parse is weird
-        NSMutableArray *followingList= PFUser.currentUser[@"following"];
+        NSMutableArray *followingList= [PFUser.currentUser[@"following"] mutableCopy];
         [followingList removeObject:self.user.objectId];
         PFUser.currentUser[@"following"]=followingList;
         self.followButton.selected=NO;

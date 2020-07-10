@@ -56,7 +56,7 @@
         }
         else
             NSLog(@"Error posting: %@", error.description);
-        //[self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 
