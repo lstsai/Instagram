@@ -64,18 +64,21 @@
 }
 
 - (void)didTapProfilePic{
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    //check if this device has a camera before presenting the picker
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    if(self.user==PFUser.currentUser)
+    {
+        UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+        imagePickerVC.delegate = self;
+        imagePickerVC.allowsEditing = YES;
+        //check if this device has a camera before presenting the picker
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        else {
+            NSLog(@"Camera 🚫 available so we will use photo library instead");
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        [self presentViewController:imagePickerVC animated:YES completion:nil];
     }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;

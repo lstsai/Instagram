@@ -16,8 +16,10 @@
 }
 -(void) loadData{
     self.usernameLabel.text=self.post.author.username;
+    self.usernameLabel2.text=self.post.author.username;
+    
     self.postCaption.text=self.post.caption;
-    self.timeLabel.text=[[self.post.createdAt shortTimeAgoSinceNow] stringByAppendingString:@" ago"];
+    self.timeLabel.text=[self.post.createdAt timeAgoSinceNow];
     self.likeCount.text= [NSString stringWithFormat:@"%@", self.post.likeCount];
     self.commentCount.text= [NSString stringWithFormat:@"%@", self.post.commentCount];
     self.postImage.image=nil;

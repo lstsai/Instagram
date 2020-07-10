@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<PostCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel2;
 
 - (void) didTapUserProfile:(UITapGestureRecognizer *)sender;
 - (void) loadData;

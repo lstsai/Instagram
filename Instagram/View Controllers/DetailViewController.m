@@ -32,7 +32,8 @@
     self.likeCountLabel.text=[NSString stringWithFormat:@"%@", self.post.likeCount];
     self.commentCount.text=[NSString stringWithFormat:@"%@", self.post.commentCount];
     self.nameLabel.text= self.post.author.username;
-    self.timeLabel.text=[self.post.createdAt shortTimeAgoSinceNow];
+    self.nameLabel2.text= self.post.author.username;
+    self.timeLabel.text=[self.post.createdAt timeAgoSinceNow];
     self.postImage.file = self.post.image;//load the image useing the PFFile
     [self.postImage loadInBackground];
     
