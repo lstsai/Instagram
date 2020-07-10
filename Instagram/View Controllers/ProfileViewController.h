@@ -12,6 +12,7 @@
 #import "PostGridCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
 @interface ProfileViewController : UIViewController
 @property (weak, nonatomic) IBOutlet PFImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 @property (weak, nonatomic) IBOutlet UITextField *bioTextField;
 @property (weak, nonatomic) IBOutlet UIButton *changeBioButton;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
 
 -(void) configureLayout;
 -(void) refreshData;

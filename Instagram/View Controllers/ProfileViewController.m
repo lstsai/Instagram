@@ -46,21 +46,56 @@
         self.bioLabel.text=self.user[@"bio"];
     else
         self.bioLabel.text=@"Bio";
+    
+    
+    self.followButton.layer.masksToBounds=YES;
+    self.followButton.layer.cornerRadius=self.followButton.bounds.size.width/10;
+    //if user is already following this person
+    if([PFUser.currentUser[@"following"] containsObject:self.user.objectId])
+        self.followButton.selected=YES;
 }
-
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"appear");
+    if([PFUser.currentUser[@"following"] containsObject:self.user.objectId])
+        self.followButton.selected=YES;
     if(self.user.username!= PFUser.currentUser.username)
     {
         self.logoutButton.titleLabel.text=@"";
         self.logoutButton.userInteractionEnabled=NO;
+        self.followButton.alpha=1;
     }
     else{
         self.logoutButton.titleLabel.text=@"Logout";
         self.logoutButton.userInteractionEnabled=YES;
+        self.followButton.alpha=0;
     }
     [self refreshData];
 
+}
+
+- (IBAction)didTapFollow:(id)sender {
+    //add this user to the following array of current
+    if(!self.followButton.selected)
+    {
+        //if (!PFUser.currentUser[@"following"])
+           // PFUser.currentUser[@"following"]= [[NSMutableArray alloc] init];
+//        [PFUser.currentUser[@"following"] addObject:self.user.objectId];
+        PFUser.currentUser[@"following"]=[PFUser.currentUser[@"following"] arrayByAddingObject:self.user.objectId];
+        self.followButton.selected=YES;
+        
+    }
+    else
+    {
+        //remove from array to unfollow
+        //weird work around bc parse is weird
+        NSMutableArray *followingList= PFUser.currentUser[@"following"];
+        [followingList removeObject:self.user.objectId];
+        PFUser.currentUser[@"following"]=followingList;
+        self.followButton.selected=NO;
+    }
+    [PFUser.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded)
+            NSLog(@"%@", PFUser.currentUser[@"following"]);
+    }];
 }
 
 - (void)didTapProfilePic{
@@ -98,6 +133,7 @@
 -(void) configureLayout{
     
     int minMargins=1;
+    self.collectionView.frame=self.view.frame;
     UICollectionViewFlowLayout *layout= (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;//cast to supress warning
     layout.minimumInteritemSpacing=minMargins;
     layout.minimumLineSpacing=minMargins;
@@ -172,8 +208,8 @@
     self.bioLabel.alpha=1;
     [self.changeBioButton setUserInteractionEnabled:NO];
     
-    self.user[@"bio"]= self.bioLabel.text;
-    [self.user saveInBackground];
+    PFUser.currentUser[@"bio"]= self.bioLabel.text;
+    [PFUser.currentUser saveInBackground];
 }
 
 #pragma mark - Navigation

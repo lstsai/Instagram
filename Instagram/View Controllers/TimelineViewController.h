@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TimelineViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) NSArray *posts;
+@property (nonatomic) NSMutableArray *posts;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isMoreDataLoading;
 @property (nonatomic) int postLimit;

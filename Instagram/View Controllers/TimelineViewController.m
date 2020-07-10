@@ -28,6 +28,7 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.refreshControl= [[UIRefreshControl alloc] init];
+
     [self.refreshControl addTarget:self action:@selector(refreshTimeline) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     self.postLimit=0;
@@ -57,7 +58,7 @@
     postQuery.limit=self.postLimit;//limit 20 posts
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-
+    
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<PFObject *> * _Nullable objects, NSError * _Nullable error) {
         if(error)
         {
@@ -66,7 +67,13 @@
         else
         {
             //NSLog(@"Success getting post %@", objects);
-            self.posts=objects;
+            self.posts=[[NSMutableArray alloc]init];
+
+            for(Post* post in objects)
+            {
+                if([PFUser.currentUser[@"following"] containsObject:post.author.objectId] || [post.author.objectId  isEqualToString: PFUser.currentUser.objectId])
+                    [self.posts addObject:post];
+            }
             [self.tableView reloadData];
         }
         self.isMoreDataLoading=NO;
